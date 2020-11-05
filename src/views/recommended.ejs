@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+
+      <% recommended.forEach(pelis => { %>
+        <ul>
+          <li>Título: <%= pelis.title %></li>
+          <li>Rating: <%= pelis.rating %></li>
+          <li>Premios: <%= pelis.awards %></li>
+          <li>Fecha de lanzamiento: <%= pelis.release_date %></li>
+          <li>Duración: <%= pelis.length %></li>
+        </ul>
+      <% }) %>
+    
+  </body>
+</html>

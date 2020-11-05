@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  </head>
+
+  <body>
+
+      <form action="/movies/search" method="post">
+        <input type="search" name="buscar">
+        <button type="submit">Buscar</button>
+      </form>
+
+      <ul>
+          <% if (typeof results != 'undefined') { %>
+           
+            <% results.forEach(result => { %>
+              <li>
+                <a href="detail/<%= result.id %>"><%= result.title %>
+              </li>
+            <% }); %>
+
+          <% } %>
+          
+      </ul>
+
+      <hr>
+
+      <ul>
+        <% if (typeof movies != 'undefined') { %>
+
+          <% movies.forEach(movie => { %>
+            <li>
+              <a href="movies/detail/<%= movie.id %>"><%= movie.title %>
+            </li>
+          <% }); %>
+
+        <% } %>
+      </ul>
+      
+  </body>
+</html>

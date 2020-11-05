@@ -1,0 +1,27 @@
+{
+  "name": "eje",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./src/bin/www",
+    "dev": "npx nodemon ./src/bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "debug": "~4.2.0",
+    "ejs": "~3.1.5",
+    "express": "~4.17.1",
+    "http-errors": "~1.8.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "main": "app.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
