@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
-  <body>
 
-    <ul>
-      
-        <% actors.forEach(actor => { %>
-          <li> <%= actor.first_name %> <%= actor.last_name %> </li>
-        <% }); %>
-      
-    </ul>
+	<%- include("partials/head") %> 
+	  
+	<body>
 
-  </body>
+		<%- include("partials/titulo") %> 
+
+		<% if (typeof actorInfo != 'undefined') { %>
+			
+			<div class="container row">
+				<ul>
+					<li>Nombre: <%= actorInfo.first_name %></li>
+					<li>Apellido: <%= actorInfo.last_name %></li>
+					<li>Puntuación: <%= actorInfo.rating %></li>
+
+					<br>
+
+					<li>
+						Películas en las que participó: 
+						<ul>
+							<% actorInfo.Movies.forEach(movie => { %>
+								<li>
+									<a href="/movies/<%= movie.id %>"><%= movie.title %></a>
+								</li>
+							<% }) %>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+		<% } %>
+
+		<% if (typeof actors != 'undefined') { %>
+			<!-- Lista de TODOS los actores -->
+			<div class="container">
+
+				<div class="col">
+					<h1>Actores</h1>
+				</div>
+		
+				<div class="col">
+					<ul>
+						<% actors.forEach(actor => { %>
+							<li>
+								<a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a>
+							</li>
+						<% }); %>
+					</ul>
+				</div>
+				
+			</div>
+		<% } %>
+	
+	</body>
 </html>

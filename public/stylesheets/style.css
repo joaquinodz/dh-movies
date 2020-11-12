@@ -25,3 +25,12 @@ a {
 h1 {
 	text-align: center;
 }
+
+#menu {
+	text-align: center;
+	font-size: x-large;
+}
+#menu li {
+	padding-right: 60px;
+	display: inline;
+}

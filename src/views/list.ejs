@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
-  <body>
-      <ul>
-        <li>Título: <%= list.title %></li>
-        <li>Rating: <%= list.rating %></li>
-        <li>Premios: <%= list.awards %></li>
-        <li>Fecha de lanzamiento: <%= list.release_date %></li>
-        <li>Duración: <%= list.length %></li>
-      </ul>
-      <button type="submit">BORRAR</button>
-      <button type="submit">MODIFICAR</button>
-  </body>
+  	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../stylesheets/style.css">
+		<title>DH Movies</title>
+	</head>
+  	<body>
+
+		<div class="container row">
+			<ul>
+				<li>Título: <%= list.title %></li>
+				<li>Rating: <%= list.rating %></li>
+				<li>Premios: <%= list.awards %></li>
+				<li>Fecha de lanzamiento: <%= list.release_date %></li>
+				<li>Duración: <%= list.length %></li>
+			  </ul>
+		</div>
+
+      	<div class="container row">
+			<button><a href="/movies/delete/<%= list.id %> ">BORRAR</a></button>
+			<button><a href="/movies/update/<%= list.id %> ">EDITAR</a></button>
+		</div>
+      	
+  	</body>
 </html>

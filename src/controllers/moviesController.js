@@ -1,4 +1,4 @@
-const { Movie, Genre, Actor, Episode, Migration, Serie, User, Season } = require('../database/models');
+const { Movie, Genre, Actor, User } = require('../database/models');
 const { Op } = require('sequelize');
 
 exports.all = async (req, res) => {
@@ -12,38 +12,7 @@ exports.all = async (req, res) => {
         console.log(error);
     }
 };
-exports.showActor = async (req, res) => {
-    try {
-        const actors = await Actor.findAll();
-        res.render('actors', { actors: actors });
-    } catch(error) {
-        console.log(error);
-    }
-};
-exports.showEpisode = async (req, res) => {
-    try {
-        const episodes = await Episode.findAll();
-        res.render('episode', { episodes: episodes });
-    } catch(error) {
-        console.log(error);
-    }
-};
-exports.showMigration = async (req, res) => {
-    try {
-        const migrations = await Migration.findAll();
-        res.render('migration', { migrations: migrations });
-    } catch(error) {
-        console.log(error);
-    }
-};
-exports.showSerie = async (req, res) => {
-    try {
-        const series = await Serie.findAll();
-        res.render('series', { series: series });
-    } catch(error) {
-        console.log(error);
-    }
-};
+
 exports.showUser = async (req, res) => {
     try {
         const users = await User.findAll();
@@ -52,14 +21,7 @@ exports.showUser = async (req, res) => {
         console.log(error);
     }
 };
-exports.showSeason = async (req, res) => {
-    try {
-        const seasons = await Season.findAll();
-        res.render('seasons', { seasons: seasons });
-    } catch(error) {
-        console.log(error);
-    }
-};
+
 exports.findMovieById = async (req, res) => {
     let id = req.params.id;
     try {
@@ -176,11 +138,32 @@ exports.change = async (req, res) => {
         });
         
         // Actualizamos los actores de la película en la tabla intermedia `actor_movie`
-        await modifiedMovie.removeActores(modifiedMovie.actores);
-        await modifiedMovie.addActores(req.body.actores);
+        await modifiedMovie.removeActores(modifiedMovie.actors);
+        await modifiedMovie.addActores(req.body.actors);
 
         // Actualizamos la info. de la película en la tabla `peliculas`
         await modifiedMovie.update(req.body);
+
+        res.redirect('/movies/' + movieId);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+exports.delete = async (req, res) => {
+    try {
+        const movieId = req.params.id;
+
+        // Obtenemos la info. de la película de la base de datos.
+        const toDelete = await Movie.findByPk(movieId, {
+            include: ['Genre', 'actores']
+        });
+        
+        // Actualizamos los actores de la película en la tabla intermedia `actor_movie`
+        await toDelete.removeActores(toDelete.actores);
+
+        // Actualizamos la info. de la película en la tabla `peliculas`
+        await toDelete.destroy(req.body);
 
         res.redirect('/');
     } catch (error) {

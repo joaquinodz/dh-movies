@@ -11,7 +11,11 @@ router.post('/search', moviesController.findMovieByPartialName);
 // CRUD methods
 router.get('/create', moviesController.create);
 router.post('/store', moviesController.store);
+
 router.get('/update/:id', moviesController.update);
+router.put('/update/:id', moviesController.change);
+
+router.get('/delete/:id', moviesController.delete);
 
 router.get('/:id', moviesController.findMovieById);
 

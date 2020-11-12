@@ -7,5 +7,8 @@ module.exports = (sequelize, dataType) => {
         release_date: dataType.DATE,
         end_date: dataType.DATE
     });
+    Season.associate = models => {
+        Season.hasMany(models.Episode);
+    };
     return Season;
 };

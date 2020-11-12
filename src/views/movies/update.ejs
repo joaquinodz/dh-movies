@@ -13,7 +13,7 @@
     <div class="container">
 
         <div class="col">
-            <form action="/movies/store" method="post">
+            <form action="/movies/update/<%= toEdit.id %>?_method=PUT" method="post">
             
                 <label for="title">Título</label>
                 <input type="text" name="title" value="<%= toEdit.title %>">

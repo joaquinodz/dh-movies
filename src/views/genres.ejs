@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="stylesheets/style.css">
-		<link rel="stylesheet" href="../stylesheets/style.css">
-		<title>DH Movies</title>
-	</head>
+	
+	<%- include("partials/head") %> 
 	  
   	<body>
 
-		<div class="container col">
-			<% if (typeof moviesFromGenre != 'undefined') { %>
-				
+		<%- include("partials/titulo") %> 
+
+		<% if (typeof moviesFromGenre != 'undefined') { %>
+			<div class="container col">
+			
 				<!-- Titulo -->
-				<div class="container col">
-					<h1>Películas del género: <%= genre %> </h1>
+				<div class="container col" style="margin-right: 5%;">
+					<h1>Películas de <%= genre %> </h1>
 				</div>
-				
-				<!-- Lista con los resultados de la busqueda -->
-				<ul>
-					<% moviesFromGenre.forEach(movie => { %>
-						<li><a href="/movies/<%= movie.id %>"><%= movie.title %></a></li>
-					<% }); %>
-				</ul>
 
-			<% } %>
-		</div>
-		
-		<div class="container col">
-			<% if (typeof genres != 'undefined') { %>
-
-				<!-- Titulo -->
 				<div class="container col">
+					<!-- Lista con los resultados de la busqueda -->
+					<ul>
+						<% moviesFromGenre.forEach(movie => { %>
+							<li><a href="/movies/<%= movie.id %>"><%= movie.title %></a></li>
+						<% }); %>
+					</ul>
+				</div>
+
+			</div>
+		<% } %>
+		
+		<% if (typeof genres != 'undefined') { %>
+			<div class="container col">
+			
+				<!-- Titulo -->
+				<div class="container col" style="margin-right: 5%;">
 					<h1>Géneros</h1>
 				</div>
 
-				<!-- Lista de todos los generos -->
-				<ul>
-					<% genres.forEach(genre => { %>
-						<li><a href="/genres/<%= genre.id %>"><%= genre.name %></a></li>
-					<% }); %>
-				</ul>
-			<% } %>
-		</div>
-	
+				<div class="container col">
+					<!-- Lista de todos los generos -->
+					<ul>
+						<% genres.forEach(genre => { %>
+							<li><a href="/genres/<%= genre.id %>"><%= genre.name %></a></li>
+						<% }); %>
+					</ul>
+				</div>
+			</div>
+		<% } %>
+
   	</body>
 </html>

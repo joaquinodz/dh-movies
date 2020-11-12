@@ -8,7 +8,7 @@ module.exports = {
     define: {
       underscored: true,
       paranoid: true,
-      timestamps: false
+      timestamps: true
     } 
   },
   "test": {

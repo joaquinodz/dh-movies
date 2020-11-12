@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html> 
 
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="stylesheets/style.css">
-		<title>DH Movies</title>
-	</head>
+	<%- include("partials/head") %> 
 
 	<body>
 
+		<%- include("partials/titulo") %> 
+
 		<main class="container">
 
-			<div class="col">
-				<h1>DH Movies</h1>
+			<div class="col" style="margin-right: 5%;">
+				<h1>Películas</h1>
 
 				<ul>
-					<li><a href="/genres">Géneros</a></li>
-					<li>Actores</li>
+					<li><a href="/recommended">¡Recomendadas!</a></li>
+					<li><a href="/new">¡Nuevas!</a></li>
 				</ul>
 			</div>
 
