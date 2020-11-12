@@ -12,14 +12,6 @@ exports.all = async (req, res) => {
         console.log(error);
     }
 };
-exports.showGenre = async (req, res) => {
-    try {
-        const genres = await Genre.findAll();
-        res.render('genres', { genres: genres });
-    } catch(error) {
-        console.log(error);
-    }
-};
 exports.showActor = async (req, res) => {
     try {
         const actors = await Actor.findAll();
