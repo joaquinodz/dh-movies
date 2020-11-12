@@ -1,42 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html> 
 
-  <head>
-  </head>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stylesheets/style.css">
+		<title>DH Movies</title>
+	</head>
 
-  <body>
+	<body>
 
-      <form action="/movies/search" method="post">
-        <input type="search" name="buscar">
-        <button type="submit">Buscar</button>
-      </form>
+		<main class="container">
 
-      <ul>
-          <% if (typeof results != 'undefined') { %>
-           
-            <% results.forEach(result => { %>
-              <li>
-                <a href="detail/<%= result.id %>"><%= result.title %>
-              </li>
-            <% }); %>
+			<div class="col">
+				<h1>DH Movies</h1>
 
-          <% } %>
-          
-      </ul>
+				<ul>
+					<li>Géneros</li>
+					<li>Actores</li>
+				</ul>
+			</div>
 
-      <hr>
+			<div class="col">
 
-      <ul>
-        <% if (typeof movies != 'undefined') { %>
+				<ul>
+					<% if (typeof movies != 'undefined') { %>
+						<% movies.forEach(movie => { %>
+							<li>
+								<a href="movies/<%= movie.id %>"><%= movie.title %>
+							</li>
+						<% }); %>
+					<% } %>
+				</ul>
 
-          <% movies.forEach(movie => { %>
-            <li>
-              <a href="movies/detail/<%= movie.id %>"><%= movie.title %>
-            </li>
-          <% }); %>
+			</div>
 
-        <% } %>
-      </ul>
-      
-  </body>
+		</main>
+
+	</body>
 </html>

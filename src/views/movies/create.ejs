@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../../stylesheets/style.css">
+
+    <title>Registrar Pelicula</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="col">
+            <form action="/movies/store" method="post">
+            
+                <label for="title">Título</label>
+                <input type="text" name="title">
+                
+                <br>
+                
+                <label for="rating" min="0">Puntuación</label>
+                <input type="number" name="rating">
+
+                <br>
+                
+                <label for="length" min="0">Duración</label>
+                <input type="number" name="length">
+                
+                <br>
+                
+                <label for="awards">Premios</label>
+                <input type="text" name="awards">
+                
+                <br>
+                
+                <label for="genre_id">Géneros</label>
+                <select name="genre_id">
+                    <% generos.forEach(genero => { %>
+                        <option value="<%= genero.id %>"> <%= genero.name %></option>
+                    <% }) %>
+                </select>
+                
+                <br>
+                
+                <label for="actors">Actores</label>
+                <select name="actors" multiple>
+                    <% actores.forEach(actor => { %>
+                        <option value="<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></option>
+                    <% }) %>
+                </select>
+
+                <br>
+
+                <label for="release_date">Fecha de Lanzamiento</label>
+                <input type="date" name="release_date">
+                
+                <br>
+                
+                <button type="submit">Registrar</button>
+    
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

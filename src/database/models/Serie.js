@@ -1,12 +1,10 @@
 const { sequelize, DataTypes } = require('sequelize');
 
 module.exports = (sequelize, dataTypes) => {
-    const serie = sequelize.define('Serie', {
+    const Serie = sequelize.define('Serie', {
         title: dataTypes.STRING,
         release_date: dataTypes.DATE,
         end_date: dataTypes.DATE
-    }, {
-        timestamps: false
-    })
-    return serie;
-}
+    });
+    return Serie;
+};

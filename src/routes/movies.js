@@ -8,6 +8,11 @@ router.get('/new', moviesController.showNew);
 router.get('/recommended', moviesController.showRecommended);
 router.post('/search', moviesController.findMovieByPartialName);
 
-router.get('/detail/:id', moviesController.findMovieById);
+// CRUD methods
+router.get('/create', moviesController.create);
+router.post('/store', moviesController.store);
+router.get('/update/:id', moviesController.update);
+
+router.get('/:id', moviesController.findMovieById);
 
 module.exports = router;

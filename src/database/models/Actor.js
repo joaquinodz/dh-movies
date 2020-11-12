@@ -1,12 +1,21 @@
 const { sequelize, DataTypes } = require('sequelize');
 
 module.exports = (sequelize, dataTypes) => {
-    const actor = sequelize.define('Actor', {
-        first_name: dataTypes.STRING,
-        last_name: dataTypes.STRING,
-        rating: dataTypes.INTEGER
-    }, {
-        timestamps: false
-    })
-    return actor;
-}
+    const Actor = sequelize.define('Actor', {
+        first_name: {
+            type: dataTypes.STRING
+        },
+        last_name: {
+            type: dataTypes.STRING
+        },
+        rating: {
+            type: dataTypes.INTEGER
+        }
+    });
+    Actor.associate = models => {
+        Actor.belongsToMany(models.Movie, {
+            through: 'actor_movie'
+        });
+    };
+    return Actor;
+};
