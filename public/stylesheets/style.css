@@ -30,7 +30,20 @@ h1 {
 	text-align: center;
 	font-size: x-large;
 }
+
 #menu li {
 	padding-right: 60px;
 	display: inline;
+}
+
+input, select {
+	margin-bottom: 20px;
+}
+
+button {
+	margin-right: 20px;
+}
+
+li {
+	font-size: 25px;
 }

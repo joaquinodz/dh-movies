@@ -1,6 +1,5 @@
 const { Movie, Genre, Actor, User } = require('../database/models');
 const { Op } = require('sequelize');
-const fecha = require('fecha');
 
 exports.all = async (req, res) => {
     try {
