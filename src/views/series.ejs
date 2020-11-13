@@ -19,30 +19,10 @@
 					<!-- Lista de todos las series -->
 					<ul>
 						<% series.forEach(serie => { %>
-							<li><a href="/series/<%= serie.id %>"><%= serie.title %></a></li>
+							<li><%= serie.title %></li>
 						<% }); %>
 					</ul>
 				</div>
-			</div>
-		<% } %>
-
-		<% if (typeof serieInfo != 'undefined') { %>
-			<div class="container col">
-			
-				<!-- Titulo -->
-				<div class="container col" style="margin-right: 5%;">
-					<h1>Serie: <%= genre %> </h1>
-				</div>
-
-				<div class="container col">
-					<!-- Lista con los resultados de la busqueda -->
-					<ul>
-						<% moviesFromGenre.forEach(movie => { %>
-							<li><a href="/movies/<%= movie.id %>"><%= movie.title %></a></li>
-						<% }); %>
-					</ul>
-				</div>
-
 			</div>
 		<% } %>
 

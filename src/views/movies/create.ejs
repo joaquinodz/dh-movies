@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="../../stylesheets/style.css">
 
-    <title>Registrar Pelicula</title>
-</head>
+    <%- include("partials/head") %> 
+
 <body>
     
+    <%- include("partials/titulo") %> 
+
     <div class="container">
 
         <div class="col">
-            <form action="/movies/store" method="post">
+            <form action="/movies/create" method="post">
             
                 <label for="title">Título</label>
                 <input type="text" name="title">

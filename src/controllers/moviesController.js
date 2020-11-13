@@ -1,5 +1,6 @@
 const { Movie, Genre, Actor, User } = require('../database/models');
 const { Op } = require('sequelize');
+const fecha = require('fecha');
 
 exports.all = async (req, res) => {
     try {
@@ -26,7 +27,11 @@ exports.findMovieById = async (req, res) => {
     let id = req.params.id;
     try {
         const search = await Movie.findByPk(id);
-        res.render('list', { list: search });
+
+        // Ajusto el formato de la fecha y saco la hora.
+        search.release_date = search.release_date.toISOString().split('T')[0];
+
+        res.render('movieDetails', { list: search });
     } catch(error) {
         console.log(error);
     }
@@ -116,11 +121,15 @@ exports.store = async (req, res) => {
 exports.update = async (req, res) => {
     try {
         const movieId = req.params.id;
+        
         const toEdit = await Movie.findByPk(movieId, {
             include: ['Genre', 'actores']
         });
         const generos = await Genre.findAll();
         const actores = await Actor.findAll();
+
+        // Ajusto el formato de la fecha y saco la hora.
+        toEdit.release_date = toEdit.release_date.toISOString().split('T')[0];
 
         res.render('movies/update', { toEdit, generos, actores });
     } catch (error) {

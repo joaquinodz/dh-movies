@@ -1,6 +1,6 @@
 {
-  "name": "eje",
-  "version": "0.0.0",
+  "name": "DHMovies",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./src/bin/www",

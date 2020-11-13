@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-  	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../stylesheets/style.css">
-		<title>DH Movies</title>
-	</head>
+	
+	<%- include("partials/head") %> 
+
   	<body>
+
+		<%- include("partials/titulo") %> 
 
 		<div class="container row">
 			<ul>
@@ -18,8 +18,15 @@
 		</div>
 
       	<div class="container row">
-			<button><a href="/movies/delete/<%= list.id %> ">BORRAR</a></button>
-			<button><a href="/movies/update/<%= list.id %> ">EDITAR</a></button>
+      		
+      		<form method="post" action="/movies/delete/<%= list.id %>?_method=DELETE">
+      			<button type="submit">BORRAR</button>
+      		</form>
+
+			<button>
+				<a href="/movies/edit/<%= list.id %> ">EDITAR</a>
+			</button>
+
 		</div>
       	
   	</body>

@@ -13,8 +13,8 @@
 				<h1>Películas</h1>
 
 				<ul>
-					<li><a href="/recommended">¡Recomendadas!</a></li>
-					<li><a href="/new">¡Nuevas!</a></li>
+					<li><a href="/movies/recommended">¡Recomendadas!</a></li>
+					<li><a href="/movies/new">¡Nuevas!</a></li>
 				</ul>
 			</div>
 
@@ -24,7 +24,7 @@
 					<% if (typeof movies != 'undefined') { %>
 						<% movies.forEach(movie => { %>
 							<li>
-								<a href="movies/<%= movie.id %>"><%= movie.title %>
+								<a href="movies/detail/<%= movie.id %>"><%= movie.title %>
 							</li>
 						<% }); %>
 					<% } %>

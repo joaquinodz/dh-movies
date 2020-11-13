@@ -10,13 +10,13 @@ router.post('/search', moviesController.findMovieByPartialName);
 
 // CRUD methods
 router.get('/create', moviesController.create);
-router.post('/store', moviesController.store);
+router.post('/create', moviesController.store);
 
-router.get('/update/:id', moviesController.update);
-router.put('/update/:id', moviesController.change);
+router.get('/edit/:id', moviesController.update);
+router.put('/edit/:id', moviesController.change);
 
-router.get('/delete/:id', moviesController.delete);
+router.delete('/delete/:id', moviesController.delete);
 
-router.get('/:id', moviesController.findMovieById);
+router.get('/detail/:id', moviesController.findMovieById);
 
 module.exports = router;
