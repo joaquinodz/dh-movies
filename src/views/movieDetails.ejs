@@ -14,19 +14,52 @@
 				<li>Premios: <%= list.awards %></li>
 				<li>Fecha de lanzamiento: <%= list.release_date %></li>
 				<li>Duración: <%= list.length %></li>
-			  </ul>
+				<li>
+					Actores: 
+					<ul>
+						<% list.actores.forEach(actor => { %>
+							<li><a href="/actors/<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></a></li>
+						<% }) %>
+					</ul>
+				</li>
+			</ul>
 		</div>
 
-      	<div class="container row">
+      	<div class="container row" style="margin-bottom: 30px;">
       		
       		<form method="post" action="/movies/delete/<%= list.id %>?_method=DELETE">
       			<button type="submit">BORRAR</button>
       		</form>
 
 			<button>
-				<a href="/movies/edit/<%= list.id %> ">EDITAR</a>
+				<a href="/movies/edit/<%= list.id %>">EDITAR</a>
 			</button>
 
+		</div>
+
+		<hr>
+
+		<div class="container col">
+
+			<h2>¿Deseas agregar actores a esta película?</h2>
+
+			<div class="col">
+				<form action="/movies/add/actores/<%= list.id %>?_method=PUT" method="post">
+					
+					<br>
+
+					<select name="actors" multiple>
+						<% actoresDisponibles.forEach(actor => { %>
+							<option value="<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %></option>  
+						<% }) %>
+					</select>
+					
+					<br>
+
+					<button type="submit">AGREGAR ACTORES</button>
+				</form>
+			</div>
+			
 		</div>
       	
   	</body>

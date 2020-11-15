@@ -15,6 +15,8 @@ router.post('/create', moviesController.store);
 router.get('/edit/:id', moviesController.update);
 router.put('/edit/:id', moviesController.change);
 
+router.put('/add/actores/:movieId', moviesController.addActors);
+
 router.delete('/delete/:id', moviesController.delete);
 
 router.get('/detail/:id', moviesController.findMovieById);

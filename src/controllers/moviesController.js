@@ -25,12 +25,13 @@ exports.showUser = async (req, res) => {
 exports.findMovieById = async (req, res) => {
     let id = req.params.id;
     try {
-        const search = await Movie.findByPk(id);
+        const search = await Movie.findByPk(id, { include: { all: true } });
+        const actores = await Actor.findAll();
 
         // Ajusto el formato de la fecha y saco la hora.
         search.release_date = search.release_date.toISOString().split('T')[0];
 
-        res.render('movieDetails', { list: search });
+        res.render('movieDetails', { list: search, actoresDisponibles: actores });
     } catch(error) {
         console.log(error);
     }
@@ -98,6 +99,10 @@ exports.create = async (req, res) => {
     }
 };
 
+exports.agregarActores = async (req, res) => {
+
+};
+
 /**
  * POST: Guarda los nuevos datos de la pelicula
  */
@@ -107,6 +112,21 @@ exports.store = async (req, res) => {
         await newMovie.addActores(req.body.actores);
 
         res.redirect('/');
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+exports.addActors = async (req, res) => {
+    try {
+        const movieId = req.params.movieId;
+
+        const toEdit = await Movie.findByPk(movieId, {
+            include: ['actores']
+        });
+        await toEdit.addActores(req.body.actors);
+
+        res.redirect('/movies/detail/' + movieId);
     } catch (error) {
         console.log(error);
     }
@@ -129,7 +149,7 @@ exports.update = async (req, res) => {
 
         // Ajusto el formato de la fecha y saco la hora.
         toEdit.release_date = toEdit.release_date.toISOString().split('T')[0];
-
+        
         res.render('movies/update', { toEdit, generos, actores });
     } catch (error) {
         console.log(error);
@@ -146,13 +166,13 @@ exports.change = async (req, res) => {
         });
         
         // Actualizamos los actores de la película en la tabla intermedia `actor_movie`
-        await modifiedMovie.removeActores(modifiedMovie.actors);
+        await modifiedMovie.removeActores(modifiedMovie.actores);
         await modifiedMovie.addActores(req.body.actors);
 
         // Actualizamos la info. de la película en la tabla `peliculas`
         await modifiedMovie.update(req.body);
 
-        res.redirect('/movies/' + movieId);
+        res.redirect('/movies/detail/' + movieId);
     } catch (error) {
         console.log(error);
     }
